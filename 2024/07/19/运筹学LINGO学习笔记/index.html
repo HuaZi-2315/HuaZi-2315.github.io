@@ -1,0 +1,675 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>运筹学LINGO学习笔记 | 华子的博客</title><meta name="author" content="华子"><meta name="copyright" content="华子"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="运筹学LINGO学习笔记LINGO简介LINDO 是一种专门用于求解数学规划问题的优化计算软件包，版权现在由美国 LINDO 系统公司（Lindo System Inc.）所拥有。LINDO 由美国芝加哥大学的 Linus Schrage 教授首先开发，随后又推出了 GINO, LINGO, LINGO NL (又称LINGO2) 和“what’s best！”等优化软件，现在一般仍用 LINDO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运筹学LINGO学习笔记">
+<meta property="og:url" content="http://example.com/2024/07/19/%E8%BF%90%E7%AD%B9%E5%AD%A6LINGO%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="华子的博客">
+<meta property="og:description" content="运筹学LINGO学习笔记LINGO简介LINDO 是一种专门用于求解数学规划问题的优化计算软件包，版权现在由美国 LINDO 系统公司（Lindo System Inc.）所拥有。LINDO 由美国芝加哥大学的 Linus Schrage 教授首先开发，随后又推出了 GINO, LINGO, LINGO NL (又称LINGO2) 和“what’s best！”等优化软件，现在一般仍用 LINDO">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s21.ax1x.com/2024/07/19/pkozuLT.jpg">
+<meta property="article:published_time" content="2024-07-19T04:17:25.000Z">
+<meta property="article:modified_time" content="2024-07-19T12:04:29.000Z">
+<meta property="article:author" content="华子">
+<meta property="article:tag" content="数学建模">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s21.ax1x.com/2024/07/19/pkozuLT.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "运筹学LINGO学习笔记",
+  "url": "http://example.com/2024/07/19/%E8%BF%90%E7%AD%B9%E5%AD%A6LINGO%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/",
+  "image": "https://s21.ax1x.com/2024/07/19/pkozuLT.jpg",
+  "datePublished": "2024-07-19T04:17:25.000Z",
+  "dateModified": "2024-07-19T12:04:29.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "华子",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/07/19/%E8%BF%90%E7%AD%B9%E5%AD%A6LINGO%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '运筹学LINGO学习笔记',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"<link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/progress_bar.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div class="bg-animation" id="web_bg" style="background-image: url(https://pic4.zhimg.com/v2-3edaaf2bf23987e3f42ab5b513a62817_1440w.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s11.ax1x.com/2024/02/10/pF3Dt10.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://s21.ax1x.com/2024/07/19/pkozuLT.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">华子的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">运筹学LINGO学习笔记</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">运筹学LINGO学习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-07-19T04:17:25.000Z" title="Created 2024-07-19 12:17:25">2024-07-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-07-19T12:04:29.000Z" title="Updated 2024-07-19 20:04:29">2024-07-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>7mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="运筹学LINGO学习笔记"><a href="#运筹学LINGO学习笔记" class="headerlink" title="运筹学LINGO学习笔记"></a>运筹学LINGO学习笔记</h1><h2 id="LINGO简介"><a href="#LINGO简介" class="headerlink" title="LINGO简介"></a>LINGO简介</h2><p>LINDO 是一种专门用于求解数学规划问题的优化计算软件包，版权现在由美国 LINDO 系统公司（Lindo System Inc.）所拥有。LINDO 由美国芝加哥大学的 Linus Schrage 教授首先开发，随后又推出了 GINO, LINGO, LINGO NL (又称LINGO2) 和“what’s best！”等优化软件，现在一般仍用 LINDO 作为这些软件的统称。</p>
+<p>LINDO 软件包的特点是：<br><strong>程序执行速度快，易于方便地输入、修改、求解和分析一个数学规划（优化问题）</strong></p>
+<p>简要介绍：</p>
+<ol>
+<li>LINDO 是 Linear Interactive and Discrete Optimizer 字首的缩写形式，可以用来求解线性规划（LP—Linear Programming）、整数规划(IP—Integer Programming)和二次规划(QP—Quadratic Programming)问题。</li>
+<li>GINO 是 General Interactive Optimizer 字首的缩写形式，可以用来求解非线性规划（NLP—Non-Linear Programming）问题，也可用于求解一些线性和非线性方程（组）以及代数方程求根等。GINO 中包含了各种一般的数学函数（包括大量的概率函数），可供使用者建立问题模型时调用。</li>
+<li>LINGO 可以用来求解线性、非线性和整数规划问题。</li>
+<li>LINGO NL (LINGO2) 可以用来求解线性、非线性和整数规划问题。<br>与 LINDO 和 GINO 不同的是，LINGO 和 LINGO NL 包含了内置的建模语言，允许以简练、直观的方式描述较大规模的优化问题，模型中所需的数据可以以一定格式保存在独立的文件中。</li>
+<li>“what’s best！” 组件主要用于数据文件是由电子表格软件（如 Excel 等）生成的情形。</li>
+</ol>
+<h2 id="LINGO快速入门"><a href="#LINGO快速入门" class="headerlink" title="LINGO快速入门"></a>LINGO快速入门</h2><h3 id="LINGO基础"><a href="#LINGO基础" class="headerlink" title="LINGO基础"></a>LINGO基础</h3><p>当你在 Windows 下开始运行 LINGO 系统时，会得到一个窗口：<br>外层是主框架窗口，包含了所有菜单命令和工具条，其它所有的窗口将被包含在主窗口之下。在主窗口内的标题为 LINGO Model – LINGO1 的窗口是 LINGO 的默认模型窗口，建立的模型都要在该窗口内编码实现。</p>
+<p>由于 LINGO 中已假设所有的变量是非负的，所以非负约束不必再输入到计算机中，LINGO 也不区分变量中的大小写字符（任何小写字符将被转换为大写字符）。</p>
+<p>Lingo 模型由 4 个部分构成：目标与约束，集合，数据，初始。</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s21.ax1x.com/2024/07/16/pkIn3TI.png" alt="pkIn3TI.png"></p>
+<p>Lingo 中有三类运算符：算术运算符，逻辑运算符和关系运算符。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>运算符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最高</td>
+<td>#NOT# ，－（负号）</td>
+</tr>
+<tr>
+<td></td>
+<td>^</td>
+</tr>
+<tr>
+<td></td>
+<td>* ，/</td>
+</tr>
+<tr>
+<td></td>
+<td>+，－（减号）</td>
+</tr>
+<tr>
+<td></td>
+<td>#EQ#，#NE#，#GE#，#GT#，#LE#，#LT#</td>
+</tr>
+<tr>
+<td></td>
+<td>#AND#，#OR#</td>
+</tr>
+<tr>
+<td>最低</td>
+<td>&lt;，＝，&gt;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>LINGO 中的集：对实际问题建模的时候，总会遇到一群或多群相联系的对象，比如工厂、消费者群体、交通工具和雇工等等。LINGO 允许把这些相联系的对象聚合成集（sets）。一旦把对象聚合成集，就可以利用集来最大限度的发挥 LINGO 建模语言的优势。</p>
+<p>数据部分以关键字<code>data:</code>开始，以关键字<code>enddata</code>结束。在这里，可以指定集成员、集的属性。其语法如下：<br><code>object_list = value_list;</code></p>
+<h3 id="LINGO中的集和数据"><a href="#LINGO中的集和数据" class="headerlink" title="LINGO中的集和数据"></a>LINGO中的集和数据</h3><h4 id="LINGO中的集"><a href="#LINGO中的集" class="headerlink" title="LINGO中的集"></a>LINGO中的集</h4><h5 id="什么是集"><a href="#什么是集" class="headerlink" title="什么是集"></a>什么是集</h5><p>对实际问题建模的时候，总会遇到一群或多群相联系的对象，比如工厂、消费者群体、交通工具和雇工等等。LINGO 允许把这些相联系的对象聚合成集（sets）。</p>
+<p>集是一群相联系的对象，这些对象也称为集的成员。一个集可能是一系列产品、卡车或雇员。每个集成员可能有一个或多个与之有关联的特征，我们把这些特征称为属性。属性值可以预先给定，也可以是未知的，有待于 LINGO 求解。</p>
+<h5 id="集的部分"><a href="#集的部分" class="headerlink" title="集的部分"></a>集的部分</h5><p>LINGO 有两种类型的集：原始集(primitive set)和派生集(derived set)。</p>
+<ul>
+<li>一个原始集是由一些最基本的对象组成的。</li>
+<li>一个派生集是用一个或多个其它集来定义的，也就是说，它的成员来自于其它已存在的集。</li>
+</ul>
+<h5 id="模型的集部分"><a href="#模型的集部分" class="headerlink" title="模型的集部分"></a>模型的集部分</h5><p>集部分是 LINGO 模型的一个可选部分。在 LINGO 模型中使用集之前，必须在集部分事先定义。集部分以关键字<code>sets:</code>开始，以<code>endsets</code>结束。</p>
+<h3 id="模型的数据部分和初始部分"><a href="#模型的数据部分和初始部分" class="headerlink" title="模型的数据部分和初始部分"></a>模型的数据部分和初始部分</h3><h4 id="数据部分入门"><a href="#数据部分入门" class="headerlink" title="数据部分入门"></a>数据部分入门</h4><p>数据部分以关键字<code>data:</code>开始，以关键字<code>enddata</code>结束。在这里，可以指定集成员、集的属性。其语法如下：<br><code>object_list = value_list;</code></p>
+<p>在处理模型的数据时，需要为集指派一些成员并且在 LINGO 求解模型之前为集的某些属性指定值。为此，LINGO 为用户提供了两个可选部分：输入集成员和数据的数据部分（Data Section）和为决策变量设置初始值的初始部分（Init Section）。</p>
+<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><p>在数据部分也可以指定一些标量变量（scalar variables）。当一个标量变量在数据部分确定时，称之为参数。</p>
+<h2 id="LINGO函数"><a href="#LINGO函数" class="headerlink" title="LINGO函数"></a>LINGO函数</h2><p>LINGO 有 9 种类型的函数：</p>
+<ol>
+<li>基本运算符：包括算术运算符、逻辑运算符和关系运算符</li>
+<li>数学函数：三角函数和常规的数学函数</li>
+<li>金融函数：LINGO 提供的两种金融函数</li>
+<li>概率函数：LINGO 提供了大量概率相关的函数</li>
+<li>变量界定函数：这类函数用来定义变量的取值范围</li>
+<li>集操作函数：这类函数为对集的操作提供帮助</li>
+<li>集循环函数：遍历集的元素，执行一定的操作的函数</li>
+<li>数据输入输出函数：这类函数允许模型和外部数据源相联系</li>
+<li>辅助函数：各种杂类函数</li>
+</ol>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p>LINGO 具有９种逻辑运算符：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#not#</td>
+<td>否定该操作数的逻辑值，一元运算符</td>
+</tr>
+<tr>
+<td>#eq#</td>
+<td>若两个运算数相等，则为 true</td>
+</tr>
+<tr>
+<td>#ne#</td>
+<td>若两个运算符不相等，则为 true</td>
+</tr>
+<tr>
+<td>#gt#</td>
+<td>左边严格大于右边，则为 true</td>
+</tr>
+<tr>
+<td>#ge#</td>
+<td>左边大于或等于右边，则为 true</td>
+</tr>
+<tr>
+<td>#lt#</td>
+<td>左边严格小于右边，则为 true</td>
+</tr>
+<tr>
+<td>#le#</td>
+<td>左边小于或等于右边，则为 true</td>
+</tr>
+<tr>
+<td>#and#</td>
+<td>两个参数都为 true 时结果为 true</td>
+</tr>
+<tr>
+<td>#or#</td>
+<td>两个参数不都为 false 时结果为 true</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>优先级：高 → #not# → 比较运算 → #and# / #or# → 低</p>
+<h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><p>LINGO 中，关系运算符主要是被用在模型中，来指定一个表达式的左边是否等于、小于等于、或者大于等于右边，形成模型的一个约束条件。</p>
+<h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@abs(x)</td>
+<td>返回 x 的绝对值</td>
+</tr>
+<tr>
+<td>@sin(x)</td>
+<td>正弦值（弧度）</td>
+</tr>
+<tr>
+<td>@cos(x)</td>
+<td>余弦值</td>
+</tr>
+<tr>
+<td>@tan(x)</td>
+<td>正切值</td>
+</tr>
+<tr>
+<td>@exp(x)</td>
+<td>e^x</td>
+</tr>
+<tr>
+<td>@log(x)</td>
+<td>自然对数</td>
+</tr>
+<tr>
+<td>@lgm(x)</td>
+<td>gamma 函数的自然对数</td>
+</tr>
+<tr>
+<td>@mod(x,y)</td>
+<td>x 除以 y 的余数</td>
+</tr>
+<tr>
+<td>@sign(x)</td>
+<td>x&lt;0 返回-1，否则 1</td>
+</tr>
+<tr>
+<td>@floor(x)</td>
+<td>向下取整</td>
+</tr>
+<tr>
+<td>@smax(x1,x2,…,xn)</td>
+<td>取最大值</td>
+</tr>
+<tr>
+<td>@smin(x1,x2,…,xn)</td>
+<td>取最小值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="金融函数"><a href="#金融函数" class="headerlink" title="金融函数"></a>金融函数</h3><ol>
+<li><p><strong>@fpa(I,n)</strong><br>单位时段利率为 I，连续 n 个时段支付，每个时段支付单位费用的净现值。</p>
+<p>例（贷款买房）：<br>贷款 50000 元，年利率 5.31%，10 年还清。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">50000 = x * @fpa(.0531,10);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>@fpl(I,n)</strong><br>第 n 个时段支付单位费用的净现值。</p>
+</li>
+</ol>
+<h3 id="概率函数"><a href="#概率函数" class="headerlink" title="概率函数"></a>概率函数</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@pbn(p,n,x)</td>
+<td>二项分布累积分布</td>
+</tr>
+<tr>
+<td>@pcx(n,x)</td>
+<td>卡方分布</td>
+</tr>
+<tr>
+<td>@pfd(n,d,x)</td>
+<td>F 分布</td>
+</tr>
+<tr>
+<td>@phg(pop,g,n,x)</td>
+<td>超几何分布</td>
+</tr>
+<tr>
+<td>@pps(a,x)</td>
+<td>泊松分布</td>
+</tr>
+<tr>
+<td>@psn(x)</td>
+<td>标准正态分布</td>
+</tr>
+<tr>
+<td>@ptd(n,x)</td>
+<td>t 分布</td>
+</tr>
+<tr>
+<td>@rand(seed)</td>
+<td>0~1 伪随机数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="变量界定函数"><a href="#变量界定函数" class="headerlink" title="变量界定函数"></a>变量界定函数</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@bin(x)</td>
+<td>限制 x 为 0 或 1</td>
+</tr>
+<tr>
+<td>@bnd(L,x,U)</td>
+<td>L ≤ x ≤ U</td>
+</tr>
+<tr>
+<td>@free(x)</td>
+<td>取消变量非负限制</td>
+</tr>
+<tr>
+<td>@gin(x)</td>
+<td>限制 x 为整数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="集操作函数"><a href="#集操作函数" class="headerlink" title="集操作函数"></a>集操作函数</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@in(set_name,成员)</td>
+<td>判断是否在集合中</td>
+</tr>
+<tr>
+<td>@index(set,成员)</td>
+<td>返回成员在集合中的索引</td>
+</tr>
+<tr>
+<td>@wrap(index,limit)</td>
+<td>循环索引</td>
+</tr>
+<tr>
+<td>@size(set_name)</td>
+<td>返回集合成员个数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="集循环函数"><a href="#集循环函数" class="headerlink" title="集循环函数"></a>集循环函数</h3><p>语法：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@function(setname[(索引)[|条件]]: 表达式);</span><br></pre></td></tr></table></figure></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@for</td>
+<td>对每个成员生成约束</td>
+</tr>
+<tr>
+<td>@sum</td>
+<td>对集合表达式求和</td>
+</tr>
+<tr>
+<td>@min / @max</td>
+<td>取最小/最大值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="输入和输出函数"><a href="#输入和输出函数" class="headerlink" title="输入和输出函数"></a>输入和输出函数</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@file(’filename’)</td>
+<td>从外部文件读数据</td>
+</tr>
+<tr>
+<td>@text</td>
+<td>输出到文本</td>
+</tr>
+<tr>
+<td>@ole</td>
+<td>与 Excel 交互</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="结果报告函数"><a href="#结果报告函数" class="headerlink" title="结果报告函数"></a>结果报告函数</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@WRITE</td>
+<td>数据段输出结果</td>
+</tr>
+<tr>
+<td>@WRITEFOR</td>
+<td>按集合输出</td>
+</tr>
+<tr>
+<td>@ITERS()</td>
+<td>迭代次数</td>
+</tr>
+<tr>
+<td>@NEWLINE(n)</td>
+<td>换行</td>
+</tr>
+<tr>
+<td>@STRLEN</td>
+<td>字符串长度</td>
+</tr>
+<tr>
+<td>@ranged / @rangeu</td>
+<td>系数允许变化范围</td>
+</tr>
+<tr>
+<td>@dual</td>
+<td>对偶价格</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>@status() 返回求解状态</strong></p>
+<ul>
+<li>0 全局最优</li>
+<li>1 不可行</li>
+<li>2 无界</li>
+<li>4 可行</li>
+<li>6 局部最优</li>
+</ul>
+<h3 id="辅助函数"><a href="#辅助函数" class="headerlink" title="辅助函数"></a>辅助函数</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@if(条件,真结果,假结果)</td>
+<td>条件函数</td>
+</tr>
+<tr>
+<td>@warn(’text’,条件)</td>
+<td>条件满足时弹出提示</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="LINGO的命令行命令"><a href="#LINGO的命令行命令" class="headerlink" title="LINGO的命令行命令"></a>LINGO的命令行命令</h2><p>按 Ctrl+1 打开命令行窗口。</p>
+<ol>
+<li><p><strong>LINGO 信息</strong></p>
+<ul>
+<li>CAT：显示所有命令类型</li>
+<li>HELP：帮助</li>
+</ul>
+</li>
+<li><p><strong>输入</strong></p>
+<ul>
+<li>MODEL：命令行输入模型</li>
+<li>TAKE：从文件读模型</li>
+</ul>
+</li>
+<li><p><strong>显示</strong></p>
+<ul>
+<li>LOOK：显示当前模型</li>
+<li>GEN：生成模型</li>
+</ul>
+</li>
+<li><p><strong>文件输出</strong></p>
+<ul>
+<li>SAVE：保存模型</li>
+<li>SMPS：保存为 MPS 格式</li>
+</ul>
+</li>
+<li><p><strong>求解</strong></p>
+<ul>
+<li>GO：求解</li>
+<li>SOLU：显示结果</li>
+</ul>
+</li>
+<li><p><strong>编辑</strong></p>
+<ul>
+<li>DEL：删除行</li>
+<li>EXT：追加行</li>
+<li>ALT：替换字符串</li>
+</ul>
+</li>
+<li><p><strong>退出</strong></p>
+<ul>
+<li>QUIT</li>
+</ul>
+</li>
+<li><p><strong>系统参数</strong></p>
+<ul>
+<li>TIME：显示运行时间</li>
+<li>SET：设置参数</li>
+</ul>
+</li>
+</ol>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s21.ax1x.com/2024/07/19/pkoxsMV.png" alt="pkoxsMV.png"><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s21.ax1x.com/2024/07/19/pkoxDx0.png" alt="pkoxDx0.png"><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s21.ax1x.com/2024/07/19/pkox6qU.png" alt="pkox6qU.png"><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s21.ax1x.com/2024/07/19/pkoxB2q.png" alt="pkoxB2q.png"></p>
+<hr>
+<p>资料链接：<br><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1puowh8YcTUANbFXvVYhBVQ">https://pan.baidu.com/s/1puowh8YcTUANbFXvVYhBVQ</a><br>提取码：bfg8</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">华子</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2024/07/19/%E8%BF%90%E7%AD%B9%E5%AD%A6LINGO%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://example.com/2024/07/19/%E8%BF%90%E7%AD%B9%E5%AD%A6LINGO%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a></div><div class="post-share"><div class="social-share" data-image="https://s21.ax1x.com/2024/07/19/pkozuLT.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/12/30/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" title="AI四件套"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s21.ax1x.com/2024/07/14/pk5MbJP.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">AI四件套</div></div><div class="info-2"><div class="info-item-1">数学建模是什么数学建模就是根据实际问题来建立数学模型，对数学模型来进行求解，然后根据结果去解决实际问题。其就是用数学语言描述实际现象的过程，把抽象复杂的问题用可视化的方法展现出来。这里的实际现象既包涵具体的自然现象，比如自由落体现象，也包含抽象的现象比如顾客对某种商品所取的价值倾向。这里的描述不但包括外在形态、内在机制的描述，也包括预测、试验和解释实际现象等内容。 数模竞赛举办时间久，含金量高，使其成为普遍认为仅次于三创赛的比赛项目。全国大学生数学建模竞赛旨在培养学生的创新意识及运用数学方法和计算机技术解决实际问题的能力，鼓励学生提高团队沟通和合作能力。 本文就数学建模基础学习列出如下笔记： 常用模型十大算法 蒙特卡罗算法： 通过计算机仿真解决，同时可以通过模拟检验模型准确性 数据拟合，参数估计，插值等数据处理算法： 大量数据处理  线性规划，整数规划，多元规划，二次规划等规划类问题： 最优化问题  图论算法： 最短路，网络流，二分图等算法，涉及到图论的问题可以用这些方法解决  动态规划，回溯搜索，分治算法，分支定界等计算机算法 最优化理论的三大非经典算法：模拟退火法，神经网络，...</div></div></div></a><a class="pagination-related" href="/2024/06/08/%E6%95%B0%E6%A8%A1%E7%BB%98%E5%9B%BE%E5%9F%BA%E7%A1%80/" title="Matlab入门画图"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s21.ax1x.com/2024/06/08/pktbGSx.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">Matlab入门画图</div></div><div class="info-2"><div class="info-item-1">二维图像曲线图Matlab作图是通过描点、连线来实现的，故在画一个曲线图形之前，必须先取得该图形上的一系列的点的坐标（即横坐标和纵坐标），然后将该点集的坐标传给Matlab函数画图。命令为：PLOT(X,Y,S)其中s表示为线性，X,Y是向量,分别表示点集的横坐标和纵坐标     操作指令 说明     PLOT(X,Y) 画实线   PLOT(X,Y1,S1,X,Y2,S2,……,X,Yn,Sn) 将多条线画在一起         操作符 说明     y 黄色   m 洋红   c 蓝绿色   r 红色   . 点   - 连线   — 长虚线   ： 短虚线   x x-符号   -. 长短线   + 加号   o 圈   例      在[0,2*pi]用红线画sin(x),用绿圈画cos(x).  1234x=linspace(0,2*pi,30);y=sin(x);z=cos(x);plot(x,y,&#x27;r&#x27;,x,z,&#x27;go&#x27;) 符号函数(显函数、隐函数和参数方程)画图ezplot    操作指令 说明     ezplot(‘f...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s11.ax1x.com/2024/02/10/pF3Dt10.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">华子</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E7%AD%B9%E5%AD%A6LINGO%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">运筹学LINGO学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#LINGO%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">LINGO简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LINGO%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">1.2.</span> <span class="toc-text">LINGO快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LINGO%E5%9F%BA%E7%A1%80"><span class="toc-number">1.2.1.</span> <span class="toc-text">LINGO基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LINGO%E4%B8%AD%E7%9A%84%E9%9B%86%E5%92%8C%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.2.</span> <span class="toc-text">LINGO中的集和数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#LINGO%E4%B8%AD%E7%9A%84%E9%9B%86"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">LINGO中的集</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%9B%86"><span class="toc-number">1.2.2.1.1.</span> <span class="toc-text">什么是集</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9B%86%E7%9A%84%E9%83%A8%E5%88%86"><span class="toc-number">1.2.2.1.2.</span> <span class="toc-text">集的部分</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%9B%86%E9%83%A8%E5%88%86"><span class="toc-number">1.2.2.1.3.</span> <span class="toc-text">模型的集部分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E9%83%A8%E5%88%86%E5%92%8C%E5%88%9D%E5%A7%8B%E9%83%A8%E5%88%86"><span class="toc-number">1.2.3.</span> <span class="toc-text">模型的数据部分和初始部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%83%A8%E5%88%86%E5%85%A5%E9%97%A8"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">数据部分入门</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E6%95%B0"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LINGO%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">LINGO函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.3.1.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.3.2.</span> <span class="toc-text">关系运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.3.</span> <span class="toc-text">数学函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%91%E8%9E%8D%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.4.</span> <span class="toc-text">金融函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E7%8E%87%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.5.</span> <span class="toc-text">概率函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%95%8C%E5%AE%9A%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.6.</span> <span class="toc-text">变量界定函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.7.</span> <span class="toc-text">集操作函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%BE%AA%E7%8E%AF%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.8.</span> <span class="toc-text">集循环函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.9.</span> <span class="toc-text">输入和输出函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%E6%8A%A5%E5%91%8A%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.10.</span> <span class="toc-text">结果报告函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.11.</span> <span class="toc-text">辅助函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LINGO%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-number">1.4.</span> <span class="toc-text">LINGO的命令行命令</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/15/hello-world/" title="Hello World">Hello World</a><time datetime="2026-04-15T01:02:20.194Z" title="Created 2026-04-15 09:02:20">2026-04-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/30/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" title="AI四件套"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s21.ax1x.com/2024/07/14/pk5MbJP.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AI四件套"/></a><div class="content"><a class="title" href="/2024/12/30/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" title="AI四件套">AI四件套</a><time datetime="2024-12-30T03:19:54.000Z" title="Created 2024-12-30 11:19:54">2024-12-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/07/19/%E8%BF%90%E7%AD%B9%E5%AD%A6LINGO%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="运筹学LINGO学习笔记"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s21.ax1x.com/2024/07/19/pkozuLT.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="运筹学LINGO学习笔记"/></a><div class="content"><a class="title" href="/2024/07/19/%E8%BF%90%E7%AD%B9%E5%AD%A6LINGO%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="运筹学LINGO学习笔记">运筹学LINGO学习笔记</a><time datetime="2024-07-19T04:17:25.000Z" title="Created 2024-07-19 12:17:25">2024-07-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/08/%E6%95%B0%E6%A8%A1%E7%BB%98%E5%9B%BE%E5%9F%BA%E7%A1%80/" title="Matlab入门画图"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s21.ax1x.com/2024/06/08/pktbGSx.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Matlab入门画图"/></a><div class="content"><a class="title" href="/2024/06/08/%E6%95%B0%E6%A8%A1%E7%BB%98%E5%9B%BE%E5%9F%BA%E7%A1%80/" title="Matlab入门画图">Matlab入门画图</a><time datetime="2024-06-08T00:35:39.000Z" title="Created 2024-06-08 08:35:39">2024-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/11/ai%E5%9B%9B%E4%BB%B6%E5%A5%97/" title="AI四件套"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://s11.ax1x.com/2024/02/11/pF3zXs1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AI四件套"/></a><div class="content"><a class="title" href="/2023/02/11/ai%E5%9B%9B%E4%BB%B6%E5%A5%97/" title="AI四件套">AI四件套</a><time datetime="2023-02-11T12:24:30.000Z" title="Created 2023-02-11 20:24:30">2023-02-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 华子</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script defer src="/js/light.js"></script><script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><script data-pjax src="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.js"></script><script data-pjax>
+  function gitcalendar_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<div class="recent-post-item" id="gitcalendarBar" style="width:100%;height:auto;padding:10px;"><style>#git_container{min-height: 280px}@media screen and (max-width:650px) {#git_container{min-height: 0px}}</style><div id="git_loading" style="width:10%;height:100%;margin:0 auto;display: block;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animatetransform></path></svg><style>#git_container{display: none;}</style></div><div id="git_container"></div></div>';
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      console.log('已挂载gitcalendar')
+      }
+
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+        gitcalendar_injector_config()
+        GitCalendarInit("https://gitcalendar.fomal.cc/api?Fomalhaut-Blog",['#d9e0df', '#c6e0dc', '#a8dcd4', '#9adcd2', '#89ded1', '#77e0d0', '#5fdecb', '#47dcc6', '#39dcc3', '#1fdabe', '#00dab9'],'Fomalhaut-Blog')
+    }
+  </script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
