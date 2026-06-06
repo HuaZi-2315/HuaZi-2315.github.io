@@ -24,6 +24,12 @@
         <content type="html"><![CDATA[<h1 id="化工笔记前言"><a href="#化工笔记前言" class="headerlink" title="化工笔记前言"></a>化工笔记前言</h1><p>化工专业领域的大佬有很多，但是我选择侯德榜先生作为头像，因为他可以说近代中国化工史的奠基人物，另外，希望所有化工人能像候老先生一样，为祖国化工对抗外国化工做出贡献。</p><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>从小学弟到学长，从小师弟熬到师兄，从入学前对本专业一无所知的萌新到现在的老灯。每一届都会有学弟学妹需要问老学长笔记或者专业课资料或者询问化工方向。但是我觉得这样很麻烦，于是开始记录化工的博客，一方面是当作日记记录自己的成长过程，可能以后面试也有用处吧，另一方面就是让化工专业的学弟学妹能够有个参考，不说其他大学，至少扬州大学的学生可以参考借鉴，也算是一件比较有意义的事情吧。<br>博客我会不定期更新，记录自己的经历和看法，如果哪天开始断更，大概因为：要么我转行了，那也我依然会更新其他的方向；要么网站被封了，我没钱维护成本了。<br>不管怎样，我不太想以过于激进的劝导所有化工的学弟学妹转行，所有专业都在喊劝退，哪里都是坑，我是喜欢化学，喜欢工科，不想考公靠边。所以，我的所有意见仅供参考，如有不足之处，还望批评指正。</p>]]></content>
       
       
+      <categories>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
       
         <tags>
             
@@ -52,32 +58,7 @@
       
         <tags>
             
-            <tag> 日常 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>化工仪表及自动化笔记整理</title>
-      <link href="/2024/12/17/%E5%8C%96%E5%B7%A5%E4%BB%AA%E8%A1%A8%E5%8F%8A%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/"/>
-      <url>/2024/12/17/%E5%8C%96%E5%B7%A5%E4%BB%AA%E8%A1%A8%E5%8F%8A%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/</url>
-      
-        <content type="html"><![CDATA[<h1 id="化工仪表自动化"><a href="#化工仪表自动化" class="headerlink" title="化工仪表自动化"></a>化工仪表自动化</h1><p>没有学到电气工程及其自动化专业，学到了自动化专业课程。本门课围绕工业过程的控制器与控制系统进行介绍，与反应工程不同的是：它是描写整个自动化过程，而不是单单的反应器和流动模型。本书重点在于控制过程的每个模块，还有方块图和控制阀的正反和气开气关判断。或许直接听电器自动化的仪表自动控制分析学的更精更准确吧，所以，这里提供的笔记和方法仅供参考。</p><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们依然引用书的前言作为开篇：<br><img src="https://s21.ax1x.com/2024/12/29/pAx2tC8.jpg" alt="pAx2tC8.jpg"></p><h2 id="整理笔记"><a href="#整理笔记" class="headerlink" title="整理笔记"></a>整理笔记</h2><p>这里是老师平时布置的作业，因为自己整理的效果不好，书的内容多而杂（本人水平不高致歉）：<br><a href="https://ocr.quark.cn/12_qNwN8">https://ocr.quark.cn/12_qNwN8</a></p><h2 id="复习视频"><a href="#复习视频" class="headerlink" title="复习视频"></a>复习视频</h2><p>这是天津大学的《化工仪表自动化》，老师讲很好，大家可以参考。</p><iframe src="//player.bilibili.com/player.html?bvid=BV1oK4y1Q737&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="800" height="450"> </iframe><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最重要的部分在于如何判断控制阀的气开关与控制作用，反馈调节方法与系统的稳定性保证贯穿全书，同样，测量变送的仪表也需要记住工作原理与种类。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 化工 </tag>
+            <tag> 总结 </tag>
             
         </tags>
       
@@ -111,6 +92,31 @@
     
     
     <entry>
+      <title>化工仪表及自动化笔记整理</title>
+      <link href="/2024/12/17/%E5%8C%96%E5%B7%A5%E4%BB%AA%E8%A1%A8%E5%8F%8A%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/"/>
+      <url>/2024/12/17/%E5%8C%96%E5%B7%A5%E4%BB%AA%E8%A1%A8%E5%8F%8A%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="化工仪表自动化"><a href="#化工仪表自动化" class="headerlink" title="化工仪表自动化"></a>化工仪表自动化</h1><p>没有学到电气工程及其自动化专业，学到了自动化专业课程。本门课围绕工业过程的控制器与控制系统进行介绍，与反应工程不同的是：它是描写整个自动化过程，而不是单单的反应器和流动模型。本书重点在于控制过程的每个模块，还有方块图和控制阀的正反和气开气关判断。或许直接听电器自动化的仪表自动控制分析学的更精更准确吧，所以，这里提供的笔记和方法仅供参考。</p><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们依然引用书的前言作为开篇：<br><img src="https://s21.ax1x.com/2024/12/29/pAx2tC8.jpg" alt="pAx2tC8.jpg"></p><h2 id="整理笔记"><a href="#整理笔记" class="headerlink" title="整理笔记"></a>整理笔记</h2><p>这里是老师平时布置的作业，因为自己整理的效果不好，书的内容多而杂（本人水平不高致歉）：<br><a href="https://ocr.quark.cn/12_qNwN8">https://ocr.quark.cn/12_qNwN8</a></p><h2 id="复习视频"><a href="#复习视频" class="headerlink" title="复习视频"></a>复习视频</h2><p>这是天津大学的《化工仪表自动化》，老师讲很好，大家可以参考。</p><iframe src="//player.bilibili.com/player.html?bvid=BV1oK4y1Q737&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="800" height="450"> </iframe><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最重要的部分在于如何判断控制阀的气开关与控制作用，反馈调节方法与系统的稳定性保证贯穿全书，同样，测量变送的仪表也需要记住工作原理与种类。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 化工 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>化学反应工程笔记整理</title>
       <link href="/2024/12/17/%E5%8C%96%E5%AD%A6%E5%8F%8D%E5%BA%94%E5%B7%A5%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
       <url>/2024/12/17/%E5%8C%96%E5%AD%A6%E5%8F%8D%E5%BA%94%E5%B7%A5%E7%A8%8B%E7%AC%94%E8%AE%B0/</url>
@@ -120,7 +126,7 @@
       
       <categories>
           
-          <category> 化工笔记 </category>
+          <category> 笔记 </category>
           
       </categories>
       
@@ -145,7 +151,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 笔记 </category>
           
       </categories>
       
@@ -170,7 +176,7 @@
       
       <categories>
           
-          <category> 学习笔记 </category>
+          <category> 笔记 </category>
           
       </categories>
       
@@ -195,14 +201,14 @@
       
       <categories>
           
-          <category> 数学建模 </category>
+          <category> 技术 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 技术 </tag>
+            <tag> 数学建模 </tag>
             
         </tags>
       
@@ -220,14 +226,14 @@
       
       <categories>
           
-          <category> 数学建模 </category>
+          <category> 笔记 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 技术 </tag>
+            <tag> 数学建模 </tag>
             
         </tags>
       
@@ -245,14 +251,14 @@
       
       <categories>
           
-          <category> 数学建模 </category>
+          <category> 技术 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 技术 </tag>
+            <tag> 数学建模 </tag>
             
         </tags>
       
@@ -277,7 +283,7 @@
       
         <tags>
             
-            <tag> 技术 </tag>
+            <tag> 软件 </tag>
             
         </tags>
       
@@ -302,7 +308,7 @@
       
         <tags>
             
-            <tag> 技术 </tag>
+            <tag> 科普 </tag>
             
         </tags>
       
@@ -352,7 +358,7 @@
       
         <tags>
             
-            <tag> 技术 </tag>
+            <tag> 动作捕捉 </tag>
             
         </tags>
       
